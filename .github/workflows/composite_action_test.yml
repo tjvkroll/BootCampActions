@@ -1,0 +1,14 @@
+on: workflow_dispatch
+
+jobs:
+  CompAction_with_input:
+    runs-on: ubuntu-latest
+    name: A job testing composite action
+    steps:
+      - uses: actions/checkout@v3
+      - id: travis
+        uses: tjvkroll/Bootcamp_composite_actions@v1
+        with:
+          string-to-use: 'Travis'
+      - run: echo final-string ${{ steps.travis.outputs.final-string }}
+        shell: bash
