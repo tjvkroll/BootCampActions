@@ -9,6 +9,6 @@ jobs:
       - id: travis
         uses: tjvkroll/Bootcamp_composite_actions@v1
         with:
-          string-to-use: 'Travis'
+          name-to-use: 'Travis'
       - run: echo final-string ${{ steps.travis.outputs.final-string }}
         shell: bash
