@@ -10,5 +10,5 @@ jobs:
         uses: tjvkroll/Bootcamp_composite_actions@main
         with:
           name-to-use: 'Travis'
-      - run: echo final-string ${{ steps.travis.outputs.final-string }}
+      - run: echo ${{ steps.travis.outputs.final-string }}
         shell: bash
