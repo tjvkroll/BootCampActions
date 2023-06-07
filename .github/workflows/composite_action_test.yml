@@ -1,8 +1,15 @@
-on: workflow_dispatch
+name: Tests composite action 
+
+on: 
+  # Allows it to be run manually and be reuseable
+  workflow_dispatch:
+  workflow_call:
 
 jobs:
   CompAction_with_input:
-    runs-on: ubuntu-latest
+    
+    #make sure we have our runner up and going
+    runs-on: self-runner
     name: A job testing composite action
     steps:
       - uses: actions/checkout@v3
