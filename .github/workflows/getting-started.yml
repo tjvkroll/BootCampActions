@@ -29,13 +29,13 @@ jobs:
     
     # creates a variable to store our string and where it will be assigned from 
     outputs:
-      output1: ${{ steps.steps1.outputs.string }} 
+      output1: ${{ steps.step1.outputs.string }} 
     
     # generating the data for our variable that will be output to be used in subsequent jobs
     steps:
       - name: Setting string content  
         id: step1
-        run: echo "::set-output name=string::'Howdy Doody'"
+        run: echo "string=Howdy Doody" >> $GITHUB_OUTPUT
     
     #
   printing_output_variable:
