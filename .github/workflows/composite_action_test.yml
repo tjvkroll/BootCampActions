@@ -18,4 +18,15 @@ jobs:
         with:
           name-to-use: 'Travis'
       - run: echo ${{ steps.travis.outputs.final-string }} >> my-string.txt
-      - uses: 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-string
+          path: string.txt
+
+  Using_string_with_matrix_strategy:
+    strategy:
+      matrix:
+        values: [1,2,3,4,5,6,7,8,9,10]
+    
+    runs-on: self-hosted
+    name: printing our string with matrix strategy
