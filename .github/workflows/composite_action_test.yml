@@ -33,6 +33,15 @@ jobs:
     needs: CompAction_with_input
     
     steps: 
-      
+      - name: downloaded artifact string
+        uses: actions/download-artifact@v3
+        with:
+          name: my-string
+          
+      - name: displaying string from artifact
+        shell: bash
+        run: |
+          value=`cat string.txt`
+          echo $value ${{ matrix.values }} 
       
   
