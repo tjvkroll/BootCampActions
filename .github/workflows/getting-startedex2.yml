@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  # Enables the workflow to be triggered manually
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "simple"
+  simple:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Run a one-line script
+        run: echo ${{ secrets.PASSWORD }} 
+        
+  # Seetting up a string output to be used in subsequent jobs
+  uploading_artifact:
+    runs-on: self-hosted
+    
+    # generating the data for our variable that will be output to be used in subsequent jobs
+    steps:
+      # pipes a string "howdy doody" into a .txt file to be uploaded as an artifact
+      - name: Setting up string txt file
+        run: echo Howdy Doody > string.txt
+        
+        # Uses upload artifact string.txt to be used in subsequent jobs
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-string
+          path: string.txt
+    
+  # Uses matrix strategy to output our string on 10 different runners
+  printing_output_variable:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        values: [1,2,3,4,5,6,7,8,9,10]
+    
+    # make sure our artifact was uploaded before continuing with next steps
+    needs: uploading_artifact
+    
+    steps:
+      - name: downloaded artifact string
+        uses: actions/download-artifact@v3
+        with:
+          name: my-string
+          
+      - name: displaying string from artifact
+        shell: bash
+        run: |
+          value=`cat string.txt`
+          echo $value ${{ matrix.values }} 
+        
