@@ -9,7 +9,7 @@ jobs:
   CompAction_with_input:
     
     #make sure we have our runner up and going
-    runs-on: self-runner
+    runs-on: self-hosted
     name: A job testing composite action
     steps:
       - uses: actions/checkout@v3
