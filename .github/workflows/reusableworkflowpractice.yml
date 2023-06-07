@@ -1,1 +1,10 @@
+name: practicing reusable work flows 
 
+on: workflow_dispatch
+  
+jobs:
+  testing_diving_deeper_workflow:
+    uses: tjvkroll/BootCampActions/.github/workflows/getting-startedex2.yml@main
+    
+  testing_exercise_2_workflow:
+    uses: tjvkroll/BootCampActions/.github/workflows/composite_action_test.yml@main
