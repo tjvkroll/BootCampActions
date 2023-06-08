@@ -49,8 +49,8 @@ jobs:
     steps: 
       - name: downloading all artifacts to be used for printing
         uses: actions/download-artifact@v3
-          with: 
-            path: my/fake/path
+        with: 
+          path: my/fake/path
           
       - name: displaying given string from artifact
         shell: bash
