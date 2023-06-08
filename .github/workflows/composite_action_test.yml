@@ -59,7 +59,7 @@ jobs:
       - name: Displaying no input string from artifact
         shell: bash
         run: |
-          value='cat no-input-string.txt'
+          value=`cat no-input-string.txt`
           echo $value ${{ matrix.values }}
           
       
