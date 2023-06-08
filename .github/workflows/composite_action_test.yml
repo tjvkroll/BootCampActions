@@ -49,19 +49,17 @@ jobs:
     steps: 
       - name: downloading all artifacts to be used for printing
         uses: actions/download-artifact@v3
-        with:
-          path: howdy/
           
       - name: displaying given string from artifact
         shell: bash
         run: |
-          value=`cat howdy/my-string.txt`
+          value=`cat my-string.txt`
           echo $value ${{ matrix.values }}
       
       - name: Displaying no input string from artifact
         shell: bash
         run: |
-          value='cat howdy/no-input-string.txt'
+          value='cat no-input-string.txt'
           echo $value ${{ matrix.values }}
           
       
