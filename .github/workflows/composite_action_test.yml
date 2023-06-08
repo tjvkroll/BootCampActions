@@ -49,19 +49,17 @@ jobs:
     steps: 
       - name: downloading all artifacts to be used for printing
         uses: actions/download-artifact@v3
-        with: 
-          path: my/fake/path
           
       - name: displaying given string from artifact
         shell: bash
         run: |
-          value=`cat my/fake/path/string.txt`
+          value=`cat string.txt`
           echo $value ${{ matrix.values }}
       
       - name: Displaying no input string from artifact
         shell: bash
         run: |
-          value='cat my/fake/path/no-string.txt'
+          value='cat no-string.txt'
           echo $value ${{ matrix.values }}
           
       
