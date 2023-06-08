@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Composite action with string given
-      - id: travis
-      - uses: tjvkroll/Bootcamp_composite_actions@main
+        id: travis
+        uses: tjvkroll/Bootcamp_composite_actions@main
         with:
           name-to-use: 'Travis'
       - run: echo ${{ steps.travis.outputs.final-string }} >> my-string.txt
@@ -27,8 +27,8 @@ jobs:
           
       # Here I'm testing the default nature of my composite action by providing no string to the action
       - name: Composite action without string given
-      - id: no_input
-      - uses: tjvkroll/Bootcamp_composite_actions@main
+        id: no_input
+        uses: tjvkroll/Bootcamp_composite_actions@main
       - run: echo ${{ steps.no_input.outputs.final-string }} >> no-input-string.txt
       # save my artifact to be used in subseqent jobs 
       - uses: actions/upload-artifact@v3
