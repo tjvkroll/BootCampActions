@@ -13,6 +13,7 @@ jobs:
     name: A job testing composite action
     steps:
       - uses: actions/checkout@v3
+      - name: Composite action with string given
       - id: travis
         uses: tjvkroll/Bootcamp_composite_actions@main
         with:
@@ -22,6 +23,19 @@ jobs:
         with:
           name: my-string
           path: string.txt
+          
+          
+      # Here I'm testing the default nature of my composite action by providing no string to the action
+      - name: Composite action without string given
+      - id: no_input
+        uses: tjvkroll/Bootcamp_composite_actions@main
+      - run: echo ${{ steps.no_input.outputs.final-string }} >> no-input-string.txt
+      # save my artifact to be used in subseqent jobs 
+      - uses: actions/upload-artifact@v3
+        with: 
+          name: no-input
+          path: no-string.txt
+      
 
   Using_string_with_matrix_strategy:
     strategy:
@@ -33,15 +47,22 @@ jobs:
     needs: CompAction_with_input
     
     steps: 
-      - name: downloaded artifact string
+      - name: downloading all artifacts to be used for printing
         uses: actions/download-artifact@v3
-        with:
-          name: my-string
+          with: 
+            path: my/fake/path
           
-      - name: displaying string from artifact
+      - name: displaying given string from artifact
         shell: bash
         run: |
-          value=`cat string.txt`
-          echo $value ${{ matrix.values }} 
+          value=`cat my/fake/path/string.txt`
+          echo $value ${{ matrix.values }}
+      
+      - name: Displaying no input string from artifact
+        shell: bash
+        run: |
+          value='cat my/fake/path/no-string.txt'
+          echo $value ${{ matrix.values }}
+          
       
   
