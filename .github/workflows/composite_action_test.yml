@@ -22,7 +22,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-string
-          path: string.txt
+          path: my-string.txt
           
           
       # Here I'm testing the default nature of my composite action by providing no string to the action
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with: 
           name: no-input
-          path: no-string.txt
+          path: no-input-string.txt
       
 
   Using_string_with_matrix_strategy:
@@ -49,17 +49,19 @@ jobs:
     steps: 
       - name: downloading all artifacts to be used for printing
         uses: actions/download-artifact@v3
+        with:
+          path: howdy/
           
       - name: displaying given string from artifact
         shell: bash
         run: |
-          value=`cat string.txt`
+          value=`cat ~/howdy/my-string.txt`
           echo $value ${{ matrix.values }}
       
       - name: Displaying no input string from artifact
         shell: bash
         run: |
-          value='cat no-string.txt'
+          value='cat ~/howdy/no-input-string.txt'
           echo $value ${{ matrix.values }}
           
       
