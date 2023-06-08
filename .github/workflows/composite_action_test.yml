@@ -55,13 +55,13 @@ jobs:
       - name: displaying given string from artifact
         shell: bash
         run: |
-          value=`cat ~/howdy/my-string.txt`
+          value=`cat howdy/my-string.txt`
           echo $value ${{ matrix.values }}
       
       - name: Displaying no input string from artifact
         shell: bash
         run: |
-          value='cat ~/howdy/no-input-string.txt'
+          value='cat howdy/no-input-string.txt'
           echo $value ${{ matrix.values }}
           
       
