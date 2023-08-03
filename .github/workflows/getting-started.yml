@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Exercise 1 github actions
+name: Workflow relies on testing
 
 # Controls when the workflow will run
 on:
