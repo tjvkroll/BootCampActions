@@ -9,8 +9,22 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  testing: 
+        # The type of runner that the job will run on
+    runs-on: Ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: running tests
+        run: |
+          go mod init go_unit_test_bootcamp
+          go test
+
   # This workflow contains a single job called "simple"
   simple:
+    needs: testing
     # The type of runner that the job will run on
     runs-on: self-hosted
 
@@ -21,7 +35,7 @@ jobs:
         
   # Seetting up a string output to be used in subsequent jobs
   string_output_setup:
-    
+    needs: [simple, testing]
     runs-on: self-hosted
     
     # creates a variable to store our string and where it will be assigned from 
@@ -36,12 +50,12 @@ jobs:
     
   # Uses matrix strategy to output our string on 10 different runners
   printing_output_variable:
+    needs: [string_output_setup, simple ,testing]
     runs-on: self-hosted
     strategy:
       matrix:
         values: [1,2,3,4,5,6,7,8,9,10]
       
-    needs: string_output_setup
     steps:
       - env:
           OUTPUT1: ${{needs.string_output_setup.outputs.output1}}
