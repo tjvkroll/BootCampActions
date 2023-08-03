@@ -26,7 +26,7 @@ jobs:
   simple:
     needs: testing
     # The type of runner that the job will run on
-    runs-on: self-hosted
+    runs-on: Ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,7 +36,7 @@ jobs:
   # Seetting up a string output to be used in subsequent jobs
   string_output_setup:
     needs: [simple, testing]
-    runs-on: self-hosted
+    runs-on: Ubuntu-latest
     
     # creates a variable to store our string and where it will be assigned from 
     outputs:
@@ -51,7 +51,7 @@ jobs:
   # Uses matrix strategy to output our string on 10 different runners
   printing_output_variable:
     needs: [string_output_setup, simple ,testing]
-    runs-on: self-hosted
+    runs-on: Ubuntu-latest
     strategy:
       matrix:
         values: [1,2,3,4,5,6,7,8,9,10]
