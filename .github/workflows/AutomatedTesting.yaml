@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Exercise 1 github actions
+
+# Controls when the workflow will run
+on: push
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "Tests"
+  Tests:
+    # The type of runner that the job will run on
+    runs-on: Ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: running tests
+        run: |
+          go mod init go_unit_test_bootcamp
+          go test
+        
+
+
+
+
+
